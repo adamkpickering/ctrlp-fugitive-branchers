@@ -81,7 +81,7 @@ endfunction
 "  a:str    the selected string
 "
 function! ctrlp#fugitivebranches#accept(mode, str)
-  call execute(":Git checkout " + a:str)
+  call execute(":Git checkout " . a:str)
   call ctrlp#exit()
 endfunction
 
