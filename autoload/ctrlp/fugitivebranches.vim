@@ -1,14 +1,14 @@
 " =============================================================================
-" File:          autoload/ctrlp/fugitive-branches.vim
+" File:          autoload/ctrlp/fugitivebranches.vim
 " Description:   Git branch finder using fugitive.vim
 " Author:        Adam Pickering
 " =============================================================================
 
 " To load this extension into ctrlp, add this to your vimrc:
 "
-"     let g:ctrlp_extensions = ['fugitive-branches']
+"     let g:ctrlp_extensions = ['fugitivebranches']
 "
-" Where 'fugitive-branches' is the name of the file 'sample.vim'
+" Where 'fugitivebranches' is the name of the file 'sample.vim'
 "
 " For multiple extensions:
 "
@@ -18,11 +18,11 @@
 "         \ ]
 
 " Load guard
-if ( exists('g:loaded_ctrlp_fugitive-branches') && g:loaded_ctrlp_sample )
+if ( exists('g:loaded_ctrlp_fugitivebranches') && g:loaded_ctrlp_sample )
 	\ || v:version < 700 || &cp
 	finish
 endif
-let g:loaded_ctrlp_fugitive-branches = 1
+let g:loaded_ctrlp_fugitivebranches = 1
 
 
 " Add this extension's settings to g:ctrlp_ext_vars
@@ -55,8 +55,8 @@ let g:loaded_ctrlp_fugitive-branches = 1
 " + specinput: enable special inputs '..' and '@cd' (disabled by default)
 "
 call add(g:ctrlp_ext_vars, {
-	\ 'init': 'ctrlp#fugitive-branches#init()',
-	\ 'accept': 'ctrlp#fugitive-branches#accept',
+	\ 'init': 'ctrlp#fugitivebranches#init()',
+	\ 'accept': 'ctrlp#fugitivebranches#accept',
 	\ 'lname': 'git branches',
 	\ 'sname': 'branches',
 	\ 'type': 'path',
@@ -67,7 +67,7 @@ call add(g:ctrlp_ext_vars, {
 "
 " Return: a Vim's List
 "
-function! ctrlp#fugitive-branches#init()
+function! ctrlp#fugitivebranches#init()
 	let input = systemlist("git branch -a")
   return input
 endfunction
@@ -80,23 +80,23 @@ endfunction
 "           the values are 'e', 'v', 't' and 'h', respectively
 "  a:str    the selected string
 "
-function! ctrlp#fugitive-branches#accept(mode, str)
+function! ctrlp#fugitivebranches#accept(mode, str)
   execute(":Git checkout " + str)
 endfunction
 
 
 " (optional) Do something before enterting ctrlp
-"function! ctrlp#fugitive-branches#enter()
+"function! ctrlp#fugitivebranches#enter()
 "endfunction
 
 
 " (optional) Do something after exiting ctrlp
-"function! ctrlp#fugitive-branches#exit()
+"function! ctrlp#fugitivebranches#exit()
 "endfunction
 
 
 " (optional) Set or check for user options specific to this extension
-"function! ctrlp#fugitive-branches#opts()
+"function! ctrlp#fugitivebranches#opts()
 "endfunction
 
 
@@ -104,15 +104,15 @@ endfunction
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 
 " Allow it to be called later
-function! ctrlp#fugitive-branches#id()
+function! ctrlp#fugitivebranches#id()
 	return s:id
 endfunction
 
 
 " Create a command to directly call the new search type
 "
-" Put this in vimrc or plugin/fugitive-branches.vim
-" command! CtrlPSample call ctrlp#init(ctrlp#fugitive-branches#id())
+" Put this in vimrc or plugin/fugitivebranches.vim
+" command! CtrlPSample call ctrlp#init(ctrlp#fugitivebranches#id())
 
 
 " vim:nofen:fdl=0:ts=2:sw=2:sts=2
